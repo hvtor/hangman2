@@ -23,20 +23,20 @@ class Hangman
 
 	def guess? (letter)
 		
-    	if word.include(letter)? 
+    	if @word.include(letter)? 
         	valid_guess(letter)
 		else
 			invalid_guess(letter)
 		end
 
-	# end
+	end
 
-	# def valid_guess(letter)
+	def valid_guess(letter2)
 		
-	# 	index = word.index(letter)
-	# 	(1..word.length).each_with_object([]) {|i | correct_arr << word.include(i) }
+		index = @word.index(letter2)
+		(0..@word.length-1).each_with_object([]) {|i | correct_arr << @word.include?(i) }
 		
-	# end
+	end
 
 	# def invalid_guess(letter)
 

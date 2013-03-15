@@ -36,8 +36,39 @@ class HangmanTest < Test::Unit::TestCase
 
 	def test_guess_passes_letter
 		word = "hello"
+		char = "e"
 		h= Hangman.new(word)
-		assert_equal true, h.guess("e")
+		assert_equal true, h.guess?(char)
+	end
+
+	def test_guess_incorrect_char_fails
+		char = "1"
+		assert_equal false, h.guess?(char)
+	end
+
+	def test_chances_decrements_when_wrong_char_given
+		char = "q"
+		word = "lemon"
+		h = Hangman.new(word)
+		h.guess?(char)
+		assert_equal 7, h.chances
+	end
+
+	def test_win_game_when_all_characters_guessed
+		
+		assert_equal true, h.win_game?
+	end
+
+	def test_lose_game_when_chances_used_up
+		chances = 0 
+		assert_equal true, h.lose_game?
+	end
+
+	def test_update_board_changes_board_when_correct_char
+		word = "lemon"
+		board = "_____"
+		char = "e"
+		assert_equal "_e____", h.update_board
 	end
 
 # # GUESS TESTS THAT VALIDATE THE GUESS (LETTER ENTERED) 
