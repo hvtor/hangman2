@@ -13,7 +13,7 @@ class HangmanTest < Test::Unit::TestCase
 		assert_equal "hello", h.word
 	end
 
-	def test_initialize_word_providies_appropriately_formatted_board
+	def test_initialize_word_provides_appropriately_formatted_board
 		word = "hello"
 		h = Hangman.new(word)
 		assert_equal "_ _ _ _ _", h.board
@@ -29,6 +29,12 @@ class HangmanTest < Test::Unit::TestCase
 		word = "hello"
 		h = Hangman.new(word)
 		assert_equal [], h.guessed
+	end
+
+	def test_intialize_guessword_starts_as_empty_string
+		word = "hello"
+		h = Hangman.new(word)
+		assert_equal 8, h.guessword
 	end
 
 # # GUESS TEST THAT ENSURES THE LETTER IS PASSED TO GUESS
@@ -54,46 +60,28 @@ class HangmanTest < Test::Unit::TestCase
 		assert_equal 7, h.chances
 	end
 
+# TEST FOR WINNING GAME
+
 	def test_win_game_when_all_characters_guessed
-		
+		h = Hangman.new(word)
 		assert_equal true, h.win_game?
 	end
 
+# TEST FOR LOSING GAME 
+
 	def test_lose_game_when_chances_used_up
-		chances = 0 
+		h = Hangman.new(word)
 		assert_equal true, h.lose_game?
 	end
 
+#TEST FOR UPDATING BOARD WITH CORRECT LETTER
 	def test_update_board_changes_board_when_correct_char
+		h = Hangman.new(word)
 		word = "lemon"
-		board = "_____"
+		board = "_ e _ _ _"
 		char = "e"
-		assert_equal "_e____", h.update_board
+		assert_equal "_ e _ _ _", h.update_board
 	end
 
-# # GUESS TESTS THAT VALIDATE THE GUESS (LETTER ENTERED) 
-# # AS CORRECT, INCORRECT, OR LATER THROWS AN EXCEPTION
-	
-	# def test_guess_is_correct
-	# 	h = Hangman.new("foxtrot")
-	# 	assert_equal true, h.guess?
-	# end
-
-# 	def test_guess_is_incorrect
-# 		h = Hangman.new("tango")
-# 		assert_equal true, h.guess?
-# 	end
-
-# # GUESS TESTS THAT ARE VALID AND OUTPUT THE CORRECT LETTER
-# # BOARD
-
-# 	def test_guess_is_output_to_the_board
-# 		h = Hangman.new("hello")
-# 		assert_equal true, h.
-# 	end
-
-# 	def test_guess_is_not_output_to_board
-# 		h = Hangman.new("")
-# 	end
 
 end
