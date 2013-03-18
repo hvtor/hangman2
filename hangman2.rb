@@ -48,7 +48,7 @@ class Hangman
 
 	def update_board(letter4)
 		for i in 0..length-1 
-	 		if word[i].include?(letter) == true
+	 		if word[i].include?(letter4) == true
  				puts letter4
  			else
  				puts "_ "
